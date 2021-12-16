@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuestoesComponent } from './questoes/questoes.component';
 import { RankComponent } from './rank/rank.component';
+import { ChangeBgDirective } from './change-bg.directive';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { RankComponent } from './rank/rank.component';
     HeaderComponent,
     QuizComponent,
     QuestoesComponent,
-    RankComponent
+    RankComponent,
+    ChangeBgDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
