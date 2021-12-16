@@ -1,0 +1,16 @@
+<div class="container bg-light py-5">
+    <h1 class="display-5 fw-bold">Bem-vindo(a) ao Movie Quiz!</h1>
+    <p class="col-md-8 fs-4">Esse quiz,possui no total 15 perguntas.</p>
+    <h4>Regras:</h4>
+    <ol>
+        <li>Cada resposta certa, equivale 100 pontos.</li>
+        <li>Cada resposta incorreta,equivale -50 ponto</li>
+        <li>Você terá somente 50 segundos para responder todas as questões</li>
+    </ol>
+    <h1 style="font-family: cursive;text-align: center;">Boa Sorte!</h1>
+    <div class="name col-md-4 my-3">
+        <label for="">Escreva o seu nome:</label>
+        <input #nome type="text" class="form-control">
+    </div>
+    <button class="btn btn-primary btn-lg" routerLink="/questoes" (click) = "comecar()">Começar o quiz!</button>
+ </div>
