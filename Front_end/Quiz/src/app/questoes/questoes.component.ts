@@ -47,14 +47,23 @@ export class QuestoesComponent implements OnInit {
     if(opcao === this.listaQuestoes[conte]?.resposta){
       this.pontos += 100;
       this.certaResposta++;
+      setTimeout(() => {
       this.getProgresso();
       this.contador++;
+      this.resetContador;
+      }, 1000);
+      
     }
     else{
+      setTimeout(() => {
+        this.respostaErrada ++;
+        this.getProgresso();
+        this.contador++;
+        this.resetContador;
+      }, 1000);
       this.pontos -=50;
-      this.respostaErrada ++;
-      this.getProgresso();
-      this.contador++;
+      
+      
     }
   }
 
