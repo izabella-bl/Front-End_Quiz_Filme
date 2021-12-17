@@ -18,8 +18,9 @@ export class QuestoesComponent implements OnInit {
   counter = 60;
   respostaErrada:number = 0;
   certaResposta:number = 0;
-  intervalo$:any
+  interval$:any
   progesso:string ="0";
+  isCompletado:boolean =false;
   
   constructor(private questaoService:QuestoesService) { 
     this.listar
@@ -43,8 +44,9 @@ export class QuestoesComponent implements OnInit {
     this.contador--;
   }
 
-  resposta(opcao:any,conte:number){
-    if(opcao === this.listaQuestoes[conte]?.resposta){
+  resposta(opcao:boolean,conte:number){
+
+    if(opcao){
       this.pontos += 100;
       this.certaResposta++;
       setTimeout(() => {
@@ -52,7 +54,6 @@ export class QuestoesComponent implements OnInit {
       this.contador++;
       this.resetContador;
       }, 1000);
-      
     }
     else{
       setTimeout(() => {
@@ -62,34 +63,39 @@ export class QuestoesComponent implements OnInit {
         this.resetContador;
       }, 1000);
       this.pontos -=50;
-      
+      if(this.pontos  < 0 ){
+        this.pontos=0;
+      }
+      if(conte === 14){
+        this.isCompletado = true;
+        this.pararTempo();
+     }
       
     }
   }
 
   comecarTempo(){
-   this.intervalo$ = interval(1000).
-   subscribe(val=>{
-     this.counter--;
-     if(this.counter===0) {
-       this.contador++;
-       this.counter=60;
-       this.pontos-=10;
-     }
+     this.interval$ = interval(1000)
+     .subscribe(val=>{
+      this.counter--;
+      if(this.counter===0) {
+        this.isCompletado = true;
+        this.pararTempo();
+      }
     });
     setTimeout(() => {
-      this.intervalo$.unsubscribe();
+      this.interval$.unsubscribe();
     }, 600000);
   }
 
   pararTempo(){
-    this.intervalo$.unsubscribe();
+    this.interval$.unsubscribe();
     this.counter = 0;
   }
 
   resetContador(){
     this.pararTempo();
-    this.counter =60;
+    this.counter=60;
     this.comecarTempo();
   }
 
