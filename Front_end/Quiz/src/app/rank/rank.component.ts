@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { findIndex } from 'rxjs';
 import { Jogador } from '../model/jogador';
 import { JogadorService } from '../services/jogador.service';
 
@@ -10,17 +11,21 @@ import { JogadorService } from '../services/jogador.service';
 export class RankComponent implements OnInit {
 
   listaDeJogadores:Jogador[] = [];
-
+ 
   constructor(private jogadorService:JogadorService) { 
     this.listar
   }
    
   ngOnInit(): void {
-    
+    this.listar();
   }
 
   private listar(){
-    this.jogadorService.listar().subscribe(  (jogador)=> this.listaDeJogadores=jogador);
+      return this.jogadorService.listar().subscribe((jogador) => {
+        this.listaDeJogadores = jogador
+      }, error => console.log(error));
   }
+
+ 
 
 }

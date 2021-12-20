@@ -18,8 +18,6 @@ export class QuestoesService {
     return this.httpClient.get<Questoes[]>(this.url);
   }
 
-  salvar(jogador:Jogador):Observable<string>{
-    return this.httpClient.post(this.url, jogador, {responseType: 'text'})
-  }
+  
 
 }

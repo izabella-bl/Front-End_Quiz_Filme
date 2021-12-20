@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { Jogador } from '../model/jogador';
 import { Questoes } from '../model/questoes';
+import { JogadorService } from '../services/jogador.service';
 import { QuestoesService } from '../services/questoes.service';
 
 
@@ -11,8 +12,8 @@ import { QuestoesService } from '../services/questoes.service';
   styleUrls: ['./questoes.component.css']
 })
 export class QuestoesComponent implements OnInit {
-
-  protected jogador = {} as Jogador;
+  
+  jogador:Jogador = new Jogador;
   public nome:string ="";
   listaQuestoes:Questoes[] = [];
   public contador:number = 0;
@@ -25,16 +26,18 @@ export class QuestoesComponent implements OnInit {
   isCompletado:boolean =false;
 
   
-  constructor(private questaoService:QuestoesService) { 
+  constructor(private questaoService:QuestoesService,private jogadorService:JogadorService) { 
     this.listar;
-    this.salvarJogador;
   }
 
   ngOnInit(): void {
     this.nome = localStorage.getItem("nome")!;
     this.listar();
     this.comecarTempo();
+    this.jogador.nameUser = this.nome;
   }
+
+
 
   private listar(){
     this.questaoService.listar().subscribe((questoes)=> this.listaQuestoes = questoes);
@@ -53,35 +56,35 @@ export class QuestoesComponent implements OnInit {
     if(opcao){
       this.pontos += 100;
       this.certaResposta++;
-      setTimeout(() => {
       this.getProgresso();
       this.contador++;
       this.resetContador;
-      }, 1000);
+     
     }
     else{
-      setTimeout(() => {
-        this.respostaErrada ++;
-        this.getProgresso();
-        this.contador++;
-        this.resetContador;
-      }, 1000);
+      
+      this.respostaErrada ++;
+      this.getProgresso();
+      this.contador++;
+      this.resetContador;
+     
       this.pontos -=50;
       if(this.pontos  < 0 ){
         this.pontos=0;
       }
-      if(conte === 14){
-        this.isCompletado = true;
-        this.pararTempo();
-     }
-      
+    }
+
+    if(conte === 14){
+      this.isCompletado = true;
+      this.pararTempo();
     }
   }
 
   comecarTempo(){
      this.interval$ = interval(1000)
      .subscribe(val=>{
-      this.counter--;
+
+      this.counter--; 
       if(this.counter===0) {
         this.isCompletado = true;
         this.pararTempo();
@@ -117,11 +120,13 @@ export class QuestoesComponent implements OnInit {
     return this.progesso;
   }
 
-  salvarJogador(){
-     this.jogador.nameUser = this.nome;
-     this.jogador.pontos = this.pontos;
-     this.questaoService.salvar(this.jogador);
-  }
+  salvar(){
+    this.jogador.pontos = this.pontos;
+    return this.jogadorService.salvar(this.jogador).subscribe((res) => {
+      console.log(res)
+    }, error => console.log(error)
+    )
+ }
 
 
 }

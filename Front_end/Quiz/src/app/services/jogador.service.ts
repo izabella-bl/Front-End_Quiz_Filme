@@ -17,4 +17,8 @@ export class JogadorService {
   listar():Observable<Jogador[]> {
     return this.httpClient.get<Jogador[]>(this.url);
   }
+
+  salvar(jogador:Jogador):Observable<string>{
+    return this.httpClient.post<string>(this.url,jogador)
+  }
 }

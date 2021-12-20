@@ -1,6 +1,6 @@
-export interface Jogador{
-    id:number;
-    nameUser:string;
-    pontos:number;
+export class Jogador{
+    id?:number;
+    nameUser?:string;
+    pontos?:number;
  
 }

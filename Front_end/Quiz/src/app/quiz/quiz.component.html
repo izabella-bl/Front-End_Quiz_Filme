@@ -10,7 +10,7 @@
     <h1 style="font-family: cursive;text-align: center;">Boa Sorte!</h1>
     <div class="name col-md-4 my-3">
         <label for="">Escreva o seu nome:</label>
-        <input #nome type="text" class="form-control">
+        <input #nome type="text" class="form-control" [(ngModel)]="jogador.nameUser" name="nameUser">
     </div>
     <button class="btn btn-primary btn-lg" routerLink="/questoes" (click) = "comecar()">Começar o quiz!</button>
  </div>

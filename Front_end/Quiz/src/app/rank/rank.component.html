@@ -7,8 +7,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let j of listaDeJogadores">
-        <th scope="row">1</th>
+      <tr *ngFor="let j of listaDeJogadores;let i = index">
+        <th scope="row">{{i+1}}</th>
         <td>{{j.nameUser}}</td>
         <td>{{j.pontos}}</td>
       </tr>

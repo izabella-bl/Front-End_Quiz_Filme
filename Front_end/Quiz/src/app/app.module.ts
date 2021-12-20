@@ -9,6 +9,7 @@ import { QuizComponent } from './quiz/quiz.component';
 import { QuestoesComponent } from './questoes/questoes.component';
 import { RankComponent } from './rank/rank.component';
 import { ChangeBgDirective } from './change-bg.directive';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ChangeBgDirective } from './change-bg.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

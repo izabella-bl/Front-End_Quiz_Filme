@@ -11,14 +11,21 @@ export class ChangeBgDirective {
   @HostListener('click') resposta(){
     
     if(this.isCorreto === true){
-        this.render.setStyle(this.el.nativeElement,'background','green');
-        this.render.setStyle(this.el.nativeElement,'color','#fff');
-        this.render.setStyle(this.el.nativeElement,'border','2px solid gray');
+     
+      this.render.setStyle(this.el.nativeElement,'background','green');
+      this.render.setStyle(this.el.nativeElement,'color','#fff');
+      this.render.setStyle(this.el.nativeElement,'border','2px solid gray');
+     
+      
     }else{
-        this.render.setStyle(this.el.nativeElement,'background','red');
-        this.render.setStyle(this.el.nativeElement,'color','#fff');
-        this.render.setStyle(this.el.nativeElement,'border','2px solid gray');
+       
+      this.render.setStyle(this.el.nativeElement,'background','red');
+      this.render.setStyle(this.el.nativeElement,'color','#fff');
+      this.render.setStyle(this.el.nativeElement,'border','2px solid gray');
     }
+  
+
+  
 
   }
 

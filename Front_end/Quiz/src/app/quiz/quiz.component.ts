@@ -1,4 +1,6 @@
 import { Component, OnInit ,ViewChild,ElementRef} from '@angular/core';
+import { Jogador } from '../model/jogador';
+
 
 @Component({
   selector: 'app-quiz',
@@ -8,7 +10,10 @@ import { Component, OnInit ,ViewChild,ElementRef} from '@angular/core';
 export class QuizComponent implements OnInit {
 
   @ViewChild('nome') nomeKey!:ElementRef
-  constructor() { }
+  
+  jogador:Jogador = new Jogador;
+
+  constructor( ) { }
 
   ngOnInit(): void {
   }
@@ -16,5 +21,7 @@ export class QuizComponent implements OnInit {
   comecar(){
     localStorage.setItem("nome",this.nomeKey.nativeElement.value);
   }
+
+  
 
 }
