@@ -1,1 +1,16 @@
-<p>rank works!</p>
+<table class="table container mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome do usuario</th>
+        <th scope="col">Pontos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let j of listaDeJogadores">
+        <th scope="row">1</th>
+        <td>{{j.nameUser}}</td>
+        <td>{{j.pontos}}</td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
+import { Jogador } from '../model/jogador';
 import { Questoes } from '../model/questoes';
 import { QuestoesService } from '../services/questoes.service';
 
@@ -11,6 +12,7 @@ import { QuestoesService } from '../services/questoes.service';
 })
 export class QuestoesComponent implements OnInit {
 
+  protected jogador = {} as Jogador;
   public nome:string ="";
   listaQuestoes:Questoes[] = [];
   public contador:number = 0;
@@ -21,9 +23,11 @@ export class QuestoesComponent implements OnInit {
   interval$:any
   progesso:string ="0";
   isCompletado:boolean =false;
+
   
   constructor(private questaoService:QuestoesService) { 
-    this.listar
+    this.listar;
+    this.salvarJogador;
   }
 
   ngOnInit(): void {
@@ -111,6 +115,12 @@ export class QuestoesComponent implements OnInit {
   getProgresso(){
     this.progesso = (((this.contador+1)/14)*100).toString();
     return this.progesso;
+  }
+
+  salvarJogador(){
+     this.jogador.nameUser = this.nome;
+     this.jogador.pontos = this.pontos;
+     this.questaoService.salvar(this.jogador);
   }
 
 

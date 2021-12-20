@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Jogador } from '../model/jogador';
+import { JogadorService } from '../services/jogador.service';
 
 @Component({
   selector: 'app-rank',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RankComponent implements OnInit {
 
-  constructor() { }
+  listaDeJogadores:Jogador[] = [];
 
+  constructor(private jogadorService:JogadorService) { 
+    this.listar
+  }
+   
   ngOnInit(): void {
+    
+  }
+
+  private listar(){
+    this.jogadorService.listar().subscribe(  (jogador)=> this.listaDeJogadores=jogador);
   }
 
 }

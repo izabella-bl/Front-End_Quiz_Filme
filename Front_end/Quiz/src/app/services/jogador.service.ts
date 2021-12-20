@@ -14,10 +14,6 @@ export class JogadorService {
    this.url = 'http://localhost:8099/quiz/jogador';
   }
 
-  salvar(jogador:Jogador):Observable<string>{
-    return this.httpClient.post(this.url, jogador, {responseType: 'text'})
-  }
-
   listar():Observable<Jogador[]> {
     return this.httpClient.get<Jogador[]>(this.url);
   }
