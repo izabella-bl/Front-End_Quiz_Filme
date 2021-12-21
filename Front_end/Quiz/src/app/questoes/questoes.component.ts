@@ -18,7 +18,7 @@ export class QuestoesComponent implements OnInit {
   listaQuestoes:Questoes[] = [];
   public contador:number = 0;
   public pontos:number = 0;
-  counter = 60;
+  counter = 80;
   respostaErrada:number = 0;
   certaResposta:number = 0;
   interval$:any
@@ -55,25 +55,29 @@ export class QuestoesComponent implements OnInit {
 
     if(opcao){
       this.pontos += 100;
-      this.certaResposta++;
-      this.getProgresso();
-      this.contador++;
+      setTimeout(() => {
+        this.certaResposta++;
+        this.getProgresso();
+        this.contador++;
+      }, 2000);
+      
       this.resetContador;
-     
+      
     }
     else{
-      
-      this.respostaErrada ++;
-      this.getProgresso();
-      this.contador++;
-      this.resetContador;
+      setTimeout(() => {
+        this.respostaErrada ++;
+        this.getProgresso();
+        this.contador++;
+        this.resetContador;
+      }, 2000);
      
       this.pontos -=50;
       if(this.pontos  < 0 ){
         this.pontos=0;
       }
     }
-
+    
     if(conte === 14){
       this.isCompletado = true;
       this.pararTempo();
@@ -92,7 +96,7 @@ export class QuestoesComponent implements OnInit {
     });
     setTimeout(() => {
       this.interval$.unsubscribe();
-    }, 600000);
+    }, 800000);
   }
 
   pararTempo(){
@@ -102,7 +106,7 @@ export class QuestoesComponent implements OnInit {
 
   resetContador(){
     this.pararTempo();
-    this.counter=60;
+    this.counter=80;
     this.comecarTempo();
   }
 
@@ -110,7 +114,7 @@ export class QuestoesComponent implements OnInit {
     this.resetContador();
     this.listar();
     this.pontos =0;
-    this.counter=60;
+    this.counter=80;
     this.contador=0;
     this.progesso="0";
   }
@@ -118,6 +122,7 @@ export class QuestoesComponent implements OnInit {
   getProgresso(){
     this.progesso = (((this.contador+1)/14)*100).toString();
     return this.progesso;
+
   }
 
   salvar(){

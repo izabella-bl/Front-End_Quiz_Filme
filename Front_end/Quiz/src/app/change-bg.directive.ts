@@ -11,20 +11,33 @@ export class ChangeBgDirective {
   @HostListener('click') resposta(){
     
     if(this.isCorreto === true){
-     
+     setTimeout(() => {
       this.render.setStyle(this.el.nativeElement,'background','green');
       this.render.setStyle(this.el.nativeElement,'color','#fff');
       this.render.setStyle(this.el.nativeElement,'border','2px solid gray');
+     }, 1000);
+      setTimeout(() => {
+        this.render.removeStyle(this.el.nativeElement,'background');
+        this.render.setStyle(this.el.nativeElement,'border','1px solid rgba(0,0,0,.125)')
+        this.render.setStyle(this.el.nativeElement,'color','black');
+      }, 1500);
+     
      
       
     }else{
-       
-      this.render.setStyle(this.el.nativeElement,'background','red');
-      this.render.setStyle(this.el.nativeElement,'color','#fff');
-      this.render.setStyle(this.el.nativeElement,'border','2px solid gray');
-    }
-  
+      setTimeout(() => {
+        this.render.setStyle(this.el.nativeElement,'background','red');
+        this.render.setStyle(this.el.nativeElement,'color','#fff');
+        this.render.setStyle(this.el.nativeElement,'border','2px solid gray');
+      }, 1000);
+      setTimeout(() => {
+        this.render.removeStyle(this.el.nativeElement,'background');
+        this.render.setStyle(this.el.nativeElement,'border','1px solid rgba(0,0,0,.125)')
+        this.render.setStyle(this.el.nativeElement,'color','black');
+      }, 1500);
 
+      
+    }
   
 
   }

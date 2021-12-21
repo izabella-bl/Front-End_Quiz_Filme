@@ -37,7 +37,7 @@
             <div class="options">
                 <ol>
                     <li (click)="resposta(listaQuestoes[contador]?.alternativaA === this.listaQuestoes[contador]?.resposta,contador)" >
-                        <div appChangeBg [isCorreto]='listaQuestoes[contador]?.alternativaA === this.listaQuestoes[contador]?.resposta' class="card">
+                        <div appChangeBg [isCorreto]='listaQuestoes[contador]?.alternativaA === this.listaQuestoes[contador]?.resposta' id="respostaA" class="card">
                             {{listaQuestoes[contador]?.alternativaA}}
                         </div>
                     </li>
