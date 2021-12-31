@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { findIndex } from 'rxjs';
 import { Jogador } from '../model/jogador';
 import { JogadorService } from '../services/jogador.service';
 
@@ -11,13 +10,16 @@ import { JogadorService } from '../services/jogador.service';
 export class RankComponent implements OnInit {
 
   listaDeJogadores:Jogador[] = [];
- 
-  constructor(private jogadorService:JogadorService) { 
+
+  constructor(private jogadorService:JogadorService) {
     this.listar
   }
-   
+
   ngOnInit(): void {
-    this.listar();
+    setTimeout(() => {
+      this.listar();
+    }, 1000);
+
   }
 
   private listar(){
@@ -26,6 +28,6 @@ export class RankComponent implements OnInit {
       }, error => console.log(error));
   }
 
- 
+
 
 }

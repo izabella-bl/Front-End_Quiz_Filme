@@ -12,21 +12,21 @@ import { QuestoesService } from '../services/questoes.service';
   styleUrls: ['./questoes.component.css']
 })
 export class QuestoesComponent implements OnInit {
-  
+
   jogador:Jogador = new Jogador;
   public nome:string ="";
   listaQuestoes:Questoes[] = [];
   public contador:number = 0;
   public pontos:number = 0;
-  counter = 80;
+  counter = 90;
   respostaErrada:number = 0;
   certaResposta:number = 0;
   interval$:any
   progesso:string ="0";
   isCompletado:boolean =false;
 
-  
-  constructor(private questaoService:QuestoesService,private jogadorService:JogadorService) { 
+
+  constructor(private questaoService:QuestoesService,private jogadorService:JogadorService) {
     this.listar;
   }
 
@@ -60,9 +60,9 @@ export class QuestoesComponent implements OnInit {
         this.getProgresso();
         this.contador++;
       }, 2000);
-      
+
       this.resetContador;
-      
+
     }
     else{
       setTimeout(() => {
@@ -71,13 +71,13 @@ export class QuestoesComponent implements OnInit {
         this.contador++;
         this.resetContador;
       }, 2000);
-     
+
       this.pontos -=50;
       if(this.pontos  < 0 ){
         this.pontos=0;
       }
     }
-    
+
     if(conte === 14){
       this.isCompletado = true;
       this.pararTempo();
@@ -88,7 +88,7 @@ export class QuestoesComponent implements OnInit {
      this.interval$ = interval(1000)
      .subscribe(val=>{
 
-      this.counter--; 
+      this.counter--;
       if(this.counter===0) {
         this.isCompletado = true;
         this.pararTempo();
@@ -96,7 +96,7 @@ export class QuestoesComponent implements OnInit {
     });
     setTimeout(() => {
       this.interval$.unsubscribe();
-    }, 800000);
+    }, 900000);
   }
 
   pararTempo(){
@@ -106,7 +106,7 @@ export class QuestoesComponent implements OnInit {
 
   resetContador(){
     this.pararTempo();
-    this.counter=80;
+    this.counter=90;
     this.comecarTempo();
   }
 
